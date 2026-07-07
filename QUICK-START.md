@@ -35,3 +35,14 @@ Create a `.env` file from `.env.example` if you want to prefill your private key
 ```bash
 node wizard/run.js --dry-run
 ```
+
+## GitHub Pages landing page
+
+Build the static Pages frontend locally with:
+
+```bash
+npm ci
+npm run build:pages
+```
+
+Then open `dist/index.html` to preview the deployed landing page output.

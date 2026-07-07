@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Token Distribution Wizard</title>
+    <meta
+      name="description"
+      content="Production-ready ERC-20 token deployment and transfer workflows for operators who need a guided distribution process."
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">TZGT Partners Solution LLC</p>
+        <h1>Production-ready token deployment and distribution workflows.</h1>
+        <p class="hero-copy">
+          Token Distribution bundles guided Node.js wizards for ERC-20 deployment and transfers,
+          helping operators launch tokens, send supply safely, and keep a traceable record of each run.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/TZGT-PARTNERS-SOLUTION-LLC/token-distribution/blob/main/QUICK-START.md">Quick start</a>
+          <a class="button button-secondary" href="https://github.com/TZGT-PARTNERS-SOLUTION-LLC/token-distribution">View repository</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="section card-grid" aria-label="Product highlights">
+          <article class="card">
+            <h2>Deploy once</h2>
+            <p>Create an ERC-20 token and mint the full initial supply directly to the recipient wallet in a single guided flow.</p>
+          </article>
+          <article class="card">
+            <h2>Transfer confidently</h2>
+            <p>Use the transfer wizard to send existing token balances with validation, balance checks, and receipt capture.</p>
+          </article>
+          <article class="card">
+            <h2>Keep an audit trail</h2>
+            <p>Each execution writes structured JSON reports so distribution activity can be reviewed, shared, and archived.</p>
+          </article>
+        </section>
+
+        <section class="section split-layout">
+          <div class="panel">
+            <p class="section-label">Why teams use it</p>
+            <h2>A lightweight operator console for live token operations.</h2>
+            <ul class="feature-list">
+              <li>Guided prompts for network, wallet, token metadata, and recipients</li>
+              <li>Supports dry runs before broadcasting any on-chain transaction</li>
+              <li>Works with environment-based configuration or interactive input</li>
+              <li>Built on Node.js and ethers for familiar operational tooling</li>
+            </ul>
+          </div>
+          <div class="panel panel-accent">
+            <p class="section-label">Core commands</p>
+            <div class="command-block">
+              <span>Install dependencies</span>
+              <code>npm ci</code>
+            </div>
+            <div class="command-block">
+              <span>Launch deployment wizard</span>
+              <code>npm start</code>
+            </div>
+            <div class="command-block">
+              <span>Run without broadcasting</span>
+              <code>npm run dry-run</code>
+            </div>
+            <div class="command-block">
+              <span>Launch transfer wizard</span>
+              <code>npm run transfer</code>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="panel">
+            <p class="section-label">Operational flow</p>
+            <div class="timeline">
+              <div>
+                <strong>1. Configure</strong>
+                <p>Set a private key and RPC URL in a local <code>.env</code> file, or provide them interactively at runtime.</p>
+              </div>
+              <div>
+                <strong>2. Validate</strong>
+                <p>Use dry-run mode and the built-in prompts to confirm token metadata, supply, and recipient destinations.</p>
+              </div>
+              <div>
+                <strong>3. Execute</strong>
+                <p>Broadcast the transaction only after review, then keep the generated report as part of your operations record.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section footer-panel">
+          <div>
+            <p class="section-label">Production notes</p>
+            <h2>Frontend on Pages, wizard stays local.</h2>
+            <p>
+              This GitHub Pages site is a public landing page for the project. The actual deployment and transfer
+              workflows continue to run locally through the existing Node.js scripts and launchers.
+            </p>
+          </div>
+          <a class="button button-primary" href="https://github.com/TZGT-PARTNERS-SOLUTION-LLC/token-distribution/blob/main/README.md">Read the full README</a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -4,6 +4,7 @@
   "description": "Production-grade one-shot ERC-20 token deployment and distribution wizard",
   "main": "wizard/run.js",
   "scripts": {
+    "build:pages": "node scripts/build-pages.js",
     "start":   "node wizard/run.js",
     "dry-run": "node wizard/run.js --dry-run",
     "transfer": "node wizard/transfer.js"
