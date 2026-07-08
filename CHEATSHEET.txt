@@ -1,0 +1,249 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                    TOKEN DISTRIBUTION CHEATSHEET                        ║
+║                      Quick Commands Reference                           ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════
+🚀 FIRST TIME SETUP
+═══════════════════════════════════════════════════════════════════════════
+
+npm install
+cp .env.example .env
+nano .env                          # Edit with YOUR credentials
+node wizard/run.js --dry-run       # TEST FIRST!
+
+
+═══════════════════════════════════════════════════════════════════════════
+⚡ MOST USED COMMANDS
+═══════════════════════════════════════════════════════════════════════════
+
+┌─ DEPLOYMENT ─────────────────────────────────────────────────────────┐
+│ node wizard/run.js --dry-run              Test (no transactions)      │
+│ node wizard/run.js --network=sepolia      Deploy to Testnet           │
+│ node wizard/run.js --network=mainnet      Deploy to Mainnet           │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌─ VALIDATION ──────────────────────────────────────────────────────────┐
+│ npm run validate:csv --input=data/recipients.csv                      │
+│ npm run estimate:gas --input=data/recipients.csv                      │
+│ npm run preview --input=data/recipients.csv                           │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌─ MONITORING ──────────────────────────────────────────────────────────┐
+│ npm run status:full                       Show all distributions       │
+│ npm run verify:tx --tx-hash=0x...         Check transaction status    │
+│ tail -f distribution_results_*.json       Stream live results         │
+└───────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+🔐 SECRETS & KEYS
+═══════════════════════════════════════════════════════════════════════════
+
+LOCAL (.env file):
+  PRIVATE_KEY=your-private-key-here
+  RPC_URL=https://your-rpc-endpoint.com
+  NETWORK=sepolia
+
+GITHUB SECRETS (CI/CD):
+  gh secret set PRIVATE_KEY < .env
+  gh secret list
+  gh secret delete PRIVATE_KEY
+
+EMERGENCY:
+  gh secret delete PRIVATE_KEY                # REVOKE IMMEDIATELY
+  npm run generate:keypair                    # Create new key
+  gh secret set PRIVATE_KEY --body "..."      # Set new secret
+
+
+═══════════════════════════════════════════════════════════════════════════
+📊 DATA & CSV
+═══════════════════════════════════════════════════════════════════════════
+
+Validate recipients CSV:
+  npm run validate:csv --input=data/recipients.csv
+
+Check for duplicates:
+  npm run check:duplicates --input=data/recipients.csv
+
+Calculate total tokens:
+  npm run calculate:total --input=data/recipients.csv
+
+Split large CSV:
+  npm run split:csv --input=data/recipients.csv --batch-size=100
+
+
+═══════════════════════════════════════════════════════════════════════════
+🧪 TESTING WORKFLOW
+═══════════════════════════════════════════════════════════════════════════
+
+1. Validate data:
+   npm run validate:csv --input=data/recipients.csv
+
+2. Estimate gas costs:
+   npm run estimate:gas --input=data/recipients.csv
+
+3. Test on testnet (DRY RUN):
+   node wizard/run.js --dry-run
+
+4. Test on testnet (REAL):
+   node wizard/run.js --network=sepolia
+
+5. Verify testnet results:
+   npm run status:completed
+
+6. Deploy to mainnet:
+   node wizard/run.js --network=mainnet
+
+
+═══════════════════════════════════════════════════════════════════════════
+📋 STATUS & LOGS
+═══════════════════════════════════════════════════════════════════════════
+
+Show pending:
+  npm run status:pending
+
+Show completed:
+  npm run status:completed
+
+Show failed:
+  npm run status:failed
+
+View logs:
+  tail -f distribution_results_*.json
+  tail -f results/errors.log
+  cat results/audit.log
+
+Search for address:
+  grep "0xAddress" distribution_results_*.json
+
+
+═══════════════════════════════════════════════════════════════════════════
+🔄 KEY ROTATION
+═══════════════════════════════════════════════════════════════════════════
+
+1. Generate new keypair:
+   npm run generate:keypair
+
+2. Export public address:
+   npm run export:address
+
+3. Update GitHub secret:
+   gh secret set PRIVATE_KEY --body "new-key"
+
+4. Test new key:
+   node wizard/run.js --dry-run
+
+5. Deploy with new key:
+   node wizard/run.js --network=sepolia
+
+
+═══════════════════════════════════════════════════════════════════════════
+🔧 DEBUGGING
+═══════════════════════════════════════════════════════════════════════════
+
+Verbose output:
+  DEBUG=* node wizard/run.js --dry-run
+
+Show config:
+  npm run debug:config
+
+Show recipients:
+  npm run debug:recipients --input=data/recipients.csv
+
+Trace execution:
+  npm run debug:trace
+
+
+═══════════════════════════════════════════════════════════════════════════
+🚨 EMERGENCY
+═══════════════════════════════════════════════════════════════════════════
+
+If something goes wrong:
+  npm run emergency:stop              STOP ALL OPERATIONS
+  npm run status:all                  CHECK WHAT'S STUCK
+  npm run collect:emergency-logs      GATHER SUPPORT INFO
+
+If key is exposed:
+  gh secret delete PRIVATE_KEY        DELETE IMMEDIATELY
+  npm run generate:keypair            GENERATE NEW KEY
+  gh secret set PRIVATE_KEY           SET NEW SECRET
+
+
+═══════════════════════════════════════════════════════════════════════════
+💾 CLEANUP & MAINTENANCE
+═══════════════════════════════════════════════════════════════════════════
+
+Remove old results:
+  npm run cleanup:results
+
+Remove logs:
+  npm run cleanup:logs
+
+Full cleanup:
+  npm run cleanup:all
+
+Archive for storage:
+  npm run archive:results
+
+
+═══════════════════════════════════════════════════════════════════════════
+🌐 NETWORKS
+═══════════════════════════════════════════════════════════════════════════
+
+Sepolia (testnet):
+  --network=sepolia
+  Faucet: https://sepoliafaucet.com
+
+Mainnet (LIVE):
+  --network=mainnet
+  ⚠️  CAREFUL - REAL MONEY
+
+Block explorers:
+  Mainnet:  https://etherscan.io
+  Sepolia:  https://sepolia.etherscan.io
+
+
+═══════════════════════════════════════════════════════════════════════════
+📖 DOCUMENTATION
+═══════════════════════════════════════════════════════════════════════════
+
+Full commands reference:
+  docs/COMMANDS.md
+
+Quick reference:
+  docs/QUICK-REFERENCE.md
+
+Setup guide:
+  docs/PRIVATE-SETUP.md
+
+Security checklist:
+  docs/SECURITY-CHECKLIST.md
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+⚠️  CRITICAL RULES
+═══════════════════════════════════════════════════════════════════════════
+
+NEVER:
+  ✗ Commit .env to git
+  ✗ Share private keys
+  ✗ Use same key for testnet & mainnet
+  ✗ Deploy without testing first
+  ✗ Hardcode credentials in code
+
+ALWAYS:
+  ✓ Test with --dry-run first
+  ✓ Test on testnet before mainnet
+  ✓ Verify recipient addresses 3x
+  ✓ Check estimated gas costs
+  ✓ Review logs before confirming
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+For full documentation: see docs/ directory
+Questions? Check SECURITY-CHECKLIST.md for common issues
+
+═══════════════════════════════════════════════════════════════════════════
