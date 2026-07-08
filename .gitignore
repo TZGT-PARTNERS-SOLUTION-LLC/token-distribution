@@ -19,3 +19,35 @@ FETCH_HEAD
 
 # Local admin/utility scripts
 push_and_private.ps1
+
+# ─────────────────────────────────────────────────────────
+# Sensitive files and private audit trails
+# ─────────────────────────────────────────────────────────
+
+# Private audit logs and notes
+.private-audit.log
+.private-notes.md
+private-*.log
+private-*.md
+
+# IDE and editor secrets
+.vscode/settings.json
+.idea/deployment.xml
+*.swp
+*.swo
+
+# OS-specific secrets
+.DS_Store
+Thumbs.db
+
+# Temporary files with sensitive data
+tmp/
+temp/
+*.tmp
+
+# Credentials in various formats
+*.pem
+*.key
+*.cert
+secrets.json
+credentials.json
