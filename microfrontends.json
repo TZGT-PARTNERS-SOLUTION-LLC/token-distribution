@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/microfrontends.json",
+  "applications": {
+    "token-distribution": {
+      "development": {
+        "fallback": "token-distribution.vercel.app"
+      },
+      "packageName": "token-distribution-wizard"
+    }
+  }
+}
